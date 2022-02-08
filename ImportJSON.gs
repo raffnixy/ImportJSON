@@ -1,7 +1,7 @@
 /*====================================================================================================================================*
   ImportJSON by Brad Jasper and Trevor Lohrbeer
   ====================================================================================================================================
-  Version:      1.6.2
+  Version:      1.6.3
   Project Page: https://github.com/bradjasper/ImportJSON
   Copyright:    (c) 2017-2019 by Brad Jasper
                 (c) 2012-2017 by Trevor Lohrbeer
@@ -23,6 +23,7 @@
   ------------------------------------------------------------------------------------------------------------------------------------
   Changelog:
   
+  1.6.3  Avoid truncating numeric values, this stops numeric values from becoming strings on the sheet.
   1.6.2  Added the 'noScalarMerge' option to avoid merging arrays of single values. The array index will instead be appended as path entry.
   1.6.1  Forked from ImportJSON on (February 8, 2022) Added the 'allowPartialMatches' option and made exact query matches the default behaviour
   1.6.0  (June 2, 2019) Fixed null values (thanks @gdesmedt1)
