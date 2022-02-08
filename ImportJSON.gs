@@ -534,7 +534,8 @@ function defaultTransform_(data, row, column, options) {
   }
   
   if (!hasOption_(options, "noTruncate") && data[row][column]) {
-    data[row][column] = data[row][column].toString().substr(0, 256);
+    if(typeof data[row][column] != "number")
+      data[row][column] = data[row][column].toString().substr(0, 256);
   }
 
   if (hasOption_(options, "debugLocation")) {
