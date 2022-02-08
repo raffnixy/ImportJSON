@@ -4,7 +4,7 @@ This is a fork of <a href="https://github.com/bradjasper/ImportJSON">ImportJSON<
 
 Please, review [`ImportJSON.gs`](ImportJSON.gs) for a list of changes and usage details.
 
-Import JSON from any URL directly into your Google Sheets. `ImportJSON.gs` adds an `=ImportJSON()` function to your spreadsheet, allowing quick and easy JSON importing. To use go to `Tools` > `Script Editor` and add the `ImportJSON.gs` file. Now in your spreadsheet you can access the `ImportJSON()` function. Use it like this:
+Import JSON from any URL directly into your Google Sheets. `ImportJSON.gs` adds an `=ImportJSON()` function to your spreadsheet, allowing quick and easy JSON importing. To use go to `Tools` > `Script Editor` and add the [`ImportJSON.gs`](ImportJSON.gs) file. Now in your spreadsheet you can access the `ImportJSON()` function. Use it like this:
 
     =ImportJSON("https://mysafeinfo.com/api/data?list=bestnovels&format=json&rows=20","/Title,/Author", "allowPartialMatches,rawHeaders")
 
