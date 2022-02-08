@@ -1,7 +1,8 @@
 # ImportJSON
 
 This is a fork of <a href="https://github.com/bradjasper/ImportJSON">ImportJSON</a> by Brad Jasper.
-Please, review `ImportJSON.gs` for a list of changes and usage details.
+
+Please, review [`ImportJSON.gs`](ImportJSON.gs) for a list of changes and usage details.
 
 Import JSON from any URL directly into your Google Sheets. `ImportJSON.gs` adds an `=ImportJSON()` function to your spreadsheet, allowing quick and easy JSON importing. To use go to `Tools` > `Script Editor` and add the `ImportJSON.gs` file. Now in your spreadsheet you can access the `ImportJSON()` function. Use it like this:
 
@@ -17,7 +18,7 @@ Here are all the functions available:
 | **ImportJSONBasicAuth** | For use by end users to import a JSON feed from a URL with HTTP Basic Auth        |
 | **ImportJSONAdvanced**  | For use by script developers to easily extend the functionality of this library   |
 
-Review `ImportJSON.gs` for more info on how to use these in detail.
+Review [`ImportJSON.gs`](ImportJSON.gs) for more info on how to use these in detail.
 
 ## Version
 - v1.6.3  Avoid truncating numeric values, this stops numeric values from becoming strings on the sheet.
@@ -34,8 +35,8 @@ Review `ImportJSON.gs` for more info on how to use these in detail.
 - v1.0.0 - Initial release
 
 ## How can you help?
-- Found a bug? Report it! https://github.com/bradjasper/ImportJSON/issues
-- Want to contribute? Submit an <a href="https://github.com/bradjasper/ImportJSON/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement">enhancement</a>
+- Found a bug? Report it! https://github.com/raffnixy/ImportJSON/issues
+- Want to contribute? Submit an [enhancement](https://github.com/bradjasper/ImportJSON/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement) to the original version or alternatively open a PR on this fork, maaayyybe I'll keep maintaining it.
 
 ## Website archive
 This code base used to be hosted at http://blog.fastfedora.com/projects/import-json and contained a lot of useful information. It has been archived at https://rawgit.com/bradjasper/ImportJSON/master/archive/blog.fastfedora.com/projects/import-json.html
