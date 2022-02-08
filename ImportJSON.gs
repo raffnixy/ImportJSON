@@ -1,7 +1,7 @@
 /*====================================================================================================================================*
   ImportJSON by Brad Jasper and Trevor Lohrbeer
   ====================================================================================================================================
-  Version:      1.5.0
+  Version:      1.6.1
   Project Page: https://github.com/bradjasper/ImportJSON
   Copyright:    (c) 2017-2019 by Brad Jasper
                 (c) 2012-2017 by Trevor Lohrbeer
@@ -23,7 +23,8 @@
   ------------------------------------------------------------------------------------------------------------------------------------
   Changelog:
   
-  1.6.0 (June 2, 2019) Fixed null values (thanks @gdesmedt1)
+  1.6.1  Forked from ImportJSON on (February 8, 2022) Added the 'allowPartialMatches' option and made exact query matches the default behaviour
+  1.6.0  (June 2, 2019) Fixed null values (thanks @gdesmedt1)
   1.5.0  (January 11, 2019) Adds ability to include all headers in a fixed order even when no data is present for a given header in some or all rows.
   1.4.0  (July 23, 2017) Transfer project to Brad Jasper. Fixed off-by-one array bug. Fixed previous value bug. Added custom annotations. Added ImportJSONFromSheet and ImportJSONBasicAuth.
   1.3.0  Adds ability to import the text from a set of rows containing the text to parse. All cells are concatenated
@@ -55,6 +56,11 @@
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
  *    debugLocation: Prepend each value with the row & column it belongs in
  *
+ * To filter the data use the 'query' parameter to only allow specified columns to be created, by default this requires the entire 
+ * path to match exactly, you can change this by passing the following value in the options parameter:
+ * 
+ *    allowPartialMatches:  Allows the query to only match to the start of the path
+ * 
  * For example:
  *
  *   =ImportJSON("http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?v=2&alt=json", "/feed/entry/title,/feed/entry/content",
@@ -97,16 +103,22 @@ function ImportJSON(url, query, parseOptions) {
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
  *    debugLocation: Prepend each value with the row & column it belongs in
+ *  
+ * To filter the data use the 'query' parameter to only allow specified columns to be created, by default this requires the entire 
+ * path to match exactly, you can change this by passing the following value in the options parameter:
+ * 
+ *    allowPartialMatches:  Allows the query to only match to the start of the path
  *
  * For example:
  *
- *   =ImportJSON("http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?v=2&alt=json", "user=bob&apikey=xxxx", 
+ *   =ImportJSONViaPost("http://gdata.youtube.com/feeds/api/standardfeeds/most_popular?v=2&alt=json", "user=bob&apikey=xxxx", 
  *               "validateHttpsCertificates=false", "/feed/entry/title,/feed/entry/content", "noInherit,noTruncate,rawHeaders")
  * 
  * @param {url}          the URL to a public JSON feed
  * @param {payload}      the content to pass with the POST request; usually a URL encoded list of parameters separated by ampersands
  * @param {fetchOptions} a comma-separated list of options used to retrieve the JSON feed from the URL
- * @param {query}        a comma-separated list of paths to import. Any path starting with one of these paths gets imported.
+ * @param {query}        a comma-separated list of paths to import. Any path that matches exactly gets imported. Use the 'allowPartialMatches'
+ *                         option to allow any match at the start of the path.
  * @param {parseOptions} a comma-separated list of options that alter processing of the data
  * @customfunction
  *
@@ -473,7 +485,11 @@ function includeXPath_(query, path, options) {
  * Returns true if the rule applies to the given path. 
  */
 function applyXPathRule_(rule, path, options) {
-  return path.indexOf(rule) == 0; 
+  if(hasOption_(options, "allowPartialMatches")) {
+    return path.indexOf(rule) == 0;
+  } else {
+    return rule == path;
+  } 
 }
 
 /** 

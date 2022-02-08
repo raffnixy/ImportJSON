@@ -1,5 +1,8 @@
 # ImportJSON
 
+This is a fork of <a href="https://github.com/bradjasper/ImportJSON">ImportJSON</a> by Brad Jasper.
+Please, review `ImportJSON.gs` for a list of changes and usage details.
+
 Import JSON from any URL directly into your Google Sheets. `ImportJSON.gs` adds an `=ImportJSON()` function to your spreadsheet, allowing quick and easy JSON importing. To use go to `Tools` > `Script Editor` and add the `ImportJSON.gs` file. Now in your spreadsheet you can access the `ImportJSON()` function. Use it like this:
 
     =ImportJSON("https://mysafeinfo.com/api/data?list=bestnovels&format=json&rows=20&alias=cnt=count,avg=average_rank,tt=title,au=author,yr=year", "/title")
@@ -17,6 +20,7 @@ Here are all the functions available:
 Review `ImportJSON.gs` for more info on how to use these in detail.
 
 ## Version
+- v1.6.1  Forked from ImportJSON on (February 8, 2022) Added the 'allowPartialMatches' option and made exact query matches the default behaviour
 - v1.6.0 (June 2, 2019) Fixed null values (thanks @gdesmedt1)
 - v1.5.0 (January 11, 2019) Adds ability to include all headers in a fixed order even when no data is present for a given header in some or all rows.
 - v1.4.0 (July 23, 2017) - Project transferred to Brad Jasper. Fixed off-by-one array bug. Fixed previous value bug. Added custom annotations. Added ImportJSONFromSheet and ImportJSONBasicAuth.
