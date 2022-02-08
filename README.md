@@ -20,6 +20,7 @@ Here are all the functions available:
 Review `ImportJSON.gs` for more info on how to use these in detail.
 
 ## Version
+- v1.6.2  Added the 'noScalarMerge' option to avoid merging arrays of single values. The array index will be appended to the path.
 - v1.6.1  Forked from ImportJSON on (February 8, 2022) Added the 'allowPartialMatches' option and made exact query matches the default behaviour
 - v1.6.0 (June 2, 2019) Fixed null values (thanks @gdesmedt1)
 - v1.5.0 (January 11, 2019) Adds ability to include all headers in a fixed order even when no data is present for a given header in some or all rows.

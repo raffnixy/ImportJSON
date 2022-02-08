@@ -1,7 +1,7 @@
 /*====================================================================================================================================*
   ImportJSON by Brad Jasper and Trevor Lohrbeer
   ====================================================================================================================================
-  Version:      1.6.1
+  Version:      1.6.2
   Project Page: https://github.com/bradjasper/ImportJSON
   Copyright:    (c) 2017-2019 by Brad Jasper
                 (c) 2012-2017 by Trevor Lohrbeer
@@ -23,6 +23,7 @@
   ------------------------------------------------------------------------------------------------------------------------------------
   Changelog:
   
+  1.6.2  Added the 'noScalarMerge' option to avoid merging arrays of single values. The array index will instead be appended as path entry.
   1.6.1  Forked from ImportJSON on (February 8, 2022) Added the 'allowPartialMatches' option and made exact query matches the default behaviour
   1.6.0  (June 2, 2019) Fixed null values (thanks @gdesmedt1)
   1.5.0  (January 11, 2019) Adds ability to include all headers in a fixed order even when no data is present for a given header in some or all rows.
@@ -67,7 +68,8 @@
  *               "noInherit,noTruncate,rawHeaders")
  * 
  * @param {url}          the URL to a public JSON feed
- * @param {query}        a comma-separated list of paths to import. Any path starting with one of these paths gets imported.
+ * @param {query}        a comma-separated list of paths to import. Any path that matches exactly gets imported. Use the 'allowPartialMatches'
+ *                         option to allow any match at the start of the path.
  * @param {parseOptions} a comma-separated list of options that alter processing of the data
  * @customfunction
  *
@@ -396,9 +398,15 @@ function parseData_(headers, data, path, state, value, query, options, includeFu
         dataInserted = true; 
       }
     }
+  } else if(Array.isArray(value) && hasOption_(options, "noScalarMerge")) {
+    for(var i = 0; i < value.length; ++i) {
+      if (parseData_(headers, data, path + "/" + i, state, value[i], query, options, includeFunc)) {
+        dataInserted = true; 
+      }
+    }
   } else if (!includeFunc || includeFunc(query, path, options)) {
     // Handle arrays containing only scalar values
-    if (Array.isArray(value)) {
+    if (Array.isArray(value) && !hasOption_(options, "noScalarMerge")) {
       value = value.join(); 
     }
     
