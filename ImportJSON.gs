@@ -46,8 +46,9 @@
  *
  *   - Data from parent JSON elements gets inherited to their child elements, so rows representing child elements contain the values 
  *      of the rows representing their parent elements.
- *   - Values longer than 256 characters get truncated.
+ *   - Values longer than 256 characters get truncated. Unless they are numeric values.
  *   - Headers have slashes converted to spaces, common prefixes removed and the resulting text converted to title case. 
+ *   - Arrays of values without names get merged into a single column.
  *
  * To change this behavior, pass in one of these values in the options parameter:
  *
@@ -56,6 +57,7 @@
  *    rawHeaders:    Don't prettify headers
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
+ *    noScalarMerge: Don't merge arrays into single columns
  *    debugLocation: Prepend each value with the row & column it belongs in
  *
  * To filter the data use the 'query' parameter to only allow specified columns to be created, by default this requires the entire 
@@ -95,8 +97,9 @@ function ImportJSON(url, query, parseOptions) {
  *
  *   - Data from parent JSON elements gets inherited to their child elements, so rows representing child elements contain the values 
  *     of the rows representing their parent elements.
- *   - Values longer than 256 characters get truncated.
+ *   - Values longer than 256 characters get truncated. Unless they are numeric values.
  *   - Headers have slashes converted to spaces, common prefixes removed and the resulting text converted to title case. 
+ *   - Arrays of values without names get merged into a single column.
  *
  * To change this behavior, pass in one of these values in the options parameter:
  *
@@ -105,6 +108,7 @@ function ImportJSON(url, query, parseOptions) {
  *    rawHeaders:    Don't prettify headers
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
+ *    noScalarMerge: Don't merge arrays into single columns
  *    debugLocation: Prepend each value with the row & column it belongs in
  *  
  * To filter the data use the 'query' parameter to only allow specified columns to be created, by default this requires the entire 
@@ -159,8 +163,9 @@ function ImportJSONViaPost(url, payload, fetchOptions, query, parseOptions) {
  *
  *   - Data from parent JSON elements gets inherited to their child elements, so rows representing child elements contain the values 
  *      of the rows representing their parent elements.
- *   - Values longer than 256 characters get truncated.
+ *   - Values longer than 256 characters get truncated. Unless they are numeric values.
  *   - Headers have slashes converted to spaces, common prefixes removed and the resulting text converted to title case. 
+ *   - Arrays of values without names get merged into a single column.
  *
  * To change this behavior, pass in one of these values in the options parameter:
  *
@@ -169,6 +174,7 @@ function ImportJSONViaPost(url, payload, fetchOptions, query, parseOptions) {
  *    rawHeaders:    Don't prettify headers
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
+ *    noScalarMerge: Don't merge arrays into single columns
  *    debugLocation: Prepend each value with the row & column it belongs in
  *
  * For example:
