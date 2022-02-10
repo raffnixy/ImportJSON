@@ -57,7 +57,7 @@
  *    rawHeaders:    Don't prettify headers
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
- *    noScalarMerge: Don't merge arrays into single columns
+ *    noScalarMerge: Don't merge arrays into single columns, this creates a column for each value and appends the index of the value to the path
  *    debugLocation: Prepend each value with the row & column it belongs in
  *
  * To filter the data use the 'query' parameter to only allow specified columns to be created, by default this requires the entire 
@@ -108,7 +108,7 @@ function ImportJSON(url, query, parseOptions) {
  *    rawHeaders:    Don't prettify headers
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
- *    noScalarMerge: Don't merge arrays into single columns
+ *    noScalarMerge: Don't merge arrays into single columns, this creates a column for each value and appends the index of the value to the path
  *    debugLocation: Prepend each value with the row & column it belongs in
  *  
  * To filter the data use the 'query' parameter to only allow specified columns to be created, by default this requires the entire 
@@ -174,7 +174,7 @@ function ImportJSONViaPost(url, payload, fetchOptions, query, parseOptions) {
  *    rawHeaders:    Don't prettify headers
  *    noHeaders:     Don't include headers, only the data
  *    allHeaders:    Include all headers from the query parameter in the order they are listed
- *    noScalarMerge: Don't merge arrays into single columns
+ *    noScalarMerge: Don't merge arrays into single columns, this creates a column for each value and appends the index of the value to the path
  *    debugLocation: Prepend each value with the row & column it belongs in
  *
  * For example:
